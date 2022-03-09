@@ -1,0 +1,7 @@
+.popup__filed {
+  display: block;
+  font-weight: normal;
+  width: 358px;
+  height: 27px;
+  border-bottom: 1px solid #000000;
+}
