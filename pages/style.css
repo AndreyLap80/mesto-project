@@ -19,4 +19,8 @@ h5 {
 }
 img {
   border: 1px solid green;
-}*/
+}
+.content {
+  width: calc(282px + 598 * ((100vw - 282px) / (1280 - 320)));
+}
+*/

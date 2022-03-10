@@ -1,0 +1,9 @@
+.profile__about-me {
+  font-size: calc(14px + 4 * ((100vw - 320px) / (1280 - 320)));
+  line-height: calc(17px + 5 * ((100vw - 320px) / (1280 - 320)));
+}
+@media screen and (max-width: 450px) {
+  .profile__about-me {
+    text-align: center;
+  }
+}

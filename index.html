@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <link rel="stylesheet" href="./pages/style.css">
-  <title>Путешествие по России</title>
+  <title>Mesto Russia</title>
 </head>
 
-<body>
-  <main class="page">
-    <div class="popup popup_opened">
+<body class="page">
+  <main class="content">
+    <section class="popup popup_opened">
       <fieldset class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <input class="popup__filed popup__filed_name" type="text" name="name" placeholder="Жак-Ив Кусто" required>
@@ -20,12 +20,90 @@
         <button class="popup__button" type="submit">Сохранить</button>
         <img class="popup__close" src="./images/Close Icon.png" alt="&times;">
       </fieldset>
+    </section>
+    <header class="header">
+      <img src="./images/header_logo.svg" alt="Mesto Russia" class="header__logo">
+      <div class="header__line"></div>
+    </header>
+    <section class="profile">
+      <img src="./images/Jac-Coosto.jpg" alt="аватар" class="profile__avatar">
+      <ul class="profile__info">
+        <li class="profile__name">
+          <h1>Жак&#8209;Ив&nbsp;Кусто</h1>
+        </li>
+        <li class="profile__about-me">Исследователь океана</li>
+      </ul>
+      <button class="profile__edit-button" type="submit"></button>
+      <button class="profile__add-button" type="submit"></button>
 
-    </div>
-
-    <footer class="footer">
-    </footer>
+    </section>
+    <section class="elements">
+      <div class="elements__rectangle">
+        <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Карачаевск </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+      <div class="elements__rectangle">
+        <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Гора Эльбрус </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+      <div class="elements__rectangle">
+        <img src="./images/dombai.jpg" alt="Домбай" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Домбай </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+      <div class="elements__rectangle">
+        <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Гора Эльбрус </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+      <div class="elements__rectangle">
+        <img src="./images/dombai.jpg" alt="Домбай" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Домбай </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+      <div class="elements__rectangle">
+        <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="elements__mask-group">
+        <div class="elements__group">
+          <p class="elements__text">Карачаево-Черкесия </p>
+          <label class="elements__button" for="like">
+            <input type="checkbox" name="like" value="yes" class="elements__like">
+            <span class="pseudo__like-button"></span>
+          </label>
+        </div>
+      </div>
+    </section>
   </main>
+  <footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
+
 </body>
 
 </html>

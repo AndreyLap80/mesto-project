@@ -1,0 +1,12 @@
+.profile__name {
+  margin-top: 23px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: calc(27px + 15 * ((100vw - 320px) / (1280 - 320)));
+  line-height: calc(32.68px + 15.32 * ((100vw - 320px) / (1280 - 320)));
+}
+@media screen and (max-width: 450px) {
+  .profile__name {
+    margin-top: calc(24.25px + 21 * ((100vw - 320px) / (1280 - 320)));
+  }
+}

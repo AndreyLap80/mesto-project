@@ -1,0 +1,6 @@
+.header__line {
+  opacity: 0.7;
+  border: 1px solid #545454;
+  margin: 0 auto;
+  width: calc(320px + 950 * ((100vw - 320px) / (1880 - 320)));
+}
