@@ -1,7 +1,12 @@
 .popup__container {
-  margin: auto;
-  width: 33.594%;
-  max-width: 100%;
+  position: fixed;
+  top: calc(123px + 72 * ((100vw - 320px) / (1280 - 320)));
+  left: calc(19px + 406 * ((100vw - 320px) / (1280 - 320)));
+  width: calc(282px + 148 * ((100vw - 320px) / (1280 - 320)));
+  height: auto;
+  padding-left: calc(22px + 14 * ((100vw - 320px) / (1280 - 320)));
+  padding-top: calc(25px + 9 * ((100vw - 320px) / (1280 - 320)));
+  padding-bottom: calc(25px + 12 * ((100vw - 320px) / (1280 - 320)));
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;

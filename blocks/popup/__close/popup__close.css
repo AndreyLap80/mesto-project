@@ -1,0 +1,12 @@
+.popup__close {
+  position: fixed;
+  top: calc(87px + 68 * ((100vw - 320px) / (1280 - 320)));
+  right: calc(19px + 366 * ((100vw - 320px) / (1280 - 320)));
+  width: calc(20px + 12 * ((100vw - 320px) / (1280 - 320)));
+  height: calc(20px + 12 * ((100vw - 320px) / (1280 - 320)));
+  cursor: pointer;
+  transition: 0.5s;
+}
+.popup__close:hover {
+  opacity: 0.6;
+}

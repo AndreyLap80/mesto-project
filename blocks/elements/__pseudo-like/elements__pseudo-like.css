@@ -1,4 +1,4 @@
-.pseudo__like-button {
+.elements__pseudo-like {
   background-image: url(../../../images/like.svg);
   transition: 0.5s;
   cursor: pointer;
@@ -7,10 +7,10 @@
   width: 22px;
   height: 19px; /* размеры */
 }
-.pseudo__like-button:hover {
+.elements__pseudo-like:hover {
   opacity: 0.6;
 }
-.pseudo__like-button:active {
+.elements__pseudo-like:active {
   background-image: url(../../../images/like_black.svg);
   opacity: 1;
 }
