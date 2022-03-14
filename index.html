@@ -5,98 +5,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <link rel="stylesheet" href="./pages/style.css">
   <title>Места России</title>
 </head>
 
 <body class="page">
-  <section class="popup popup_opened">
-    <fieldset class="popup__container">
-      <h2 class="popup__heading">Редактировать профиль</h2>
-      <input class="popup__name" type="text" name="name" placeholder="Имя" required>
-      <div class="popup__line"></div>
-      <input class="popup__about" type="text" name="about" placeholder="О себе" required>
-      <div class="popup__line"></div>
-      <button class="popup__button" type="submit">Сохранить</button>
-      <img class="popup__close" src="./images/Close_Icon.png" alt="&times;">
-    </fieldset>
-  </section>
-  <main class="content">
 
-    <header class="header">
-      <img src="./images/header_logo.svg" alt="Mesto Russia" class="header__logo">
-      <div class="header__line"></div>
-    </header>
+  <header class="header">
+    <img src="./images/header_logo.svg" alt="Mesto Russia" class="header__logo">
+
+  </header>
+  <main class="content">
     <section class="profile">
       <img src="./images/Jac-Coosto.jpg" alt="аватар" class="profile__avatar">
-      <ul class="profile__info">
-        <li class="profile__name">
-          <h1>Жак&#8209;Ив&nbsp;Кусто</h1>
-        </li>
-        <li class="profile__about-me">Исследователь океана</li>
-      </ul>
-      <button class="profile__edit-button" type="submit"></button>
-      <button class="profile__add-button" type="submit"></button>
-
+      <div class="profile__info">
+        <h1 class="profile__name">Жак&#8209;Ив&nbsp;Кусто</h1>
+        <p class="profile__about-me">Исследователь океана</p>
+      </div>
+      <button class="profile__edit-button" aria-label="edit-button" type="button"></button>
+      <button class="profile__add-button" aria-label="add-button" type="button"></button>
     </section>
     <section class="elements">
       <div class="elements__rectangle">
         <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Карачаевск </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Карачаевск</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
       <div class="elements__rectangle">
         <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Гора Эльбрус </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Гора Эльбрус</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
       <div class="elements__rectangle">
         <img src="./images/dombai.jpg" alt="Домбай" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Домбай </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Домбай</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
       <div class="elements__rectangle">
         <img src="./images/Elbrus.jpg" alt="Гора Эльбрус" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Гора Эльбрус </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Гора Эльбрус</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
       <div class="elements__rectangle">
         <img src="./images/dombai.jpg" alt="Домбай" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Домбай </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Домбай</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
       <div class="elements__rectangle">
         <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="elements__mask-group">
         <div class="elements__group">
-          <p class="elements__text">Карачаево-Черкесия </p>
-          <label class="elements__button">
-            <input type="checkbox" name="like" value="like" class="elements__like">
-            <span class="elements__pseudo-like"></span>
-          </label>
+          <h2 class="elements__text">Карачаево-Черкесия</h2>
+          <button class="elements__like" aria-label="like" type="button"></button>
         </div>
       </div>
     </section>
@@ -104,7 +73,18 @@
   <footer class="footer">
     <p class="footer__text">© 2020 Mesto Russia</p>
   </footer>
+  <section class="popup popup_opened">
+    <div class="popup__container">
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="form popup__form" action="" name="profile">
+        <input class="form__input form__input_popup_name" type="text" name="name" placeholder="Имя" required>
+        <input class="form__input form__input_popup_about" type="text" name="about" placeholder="О себе" required>
+        <button class="form__button form__button_popup_save" aria-label="save" type="submit">Сохранить</button>
+        <button class=" form__button form__button_popup_close" aria-label="close" type="button"></button>
+      </form>
 
+    </div>
+  </section>
 </body>
 
 </html>

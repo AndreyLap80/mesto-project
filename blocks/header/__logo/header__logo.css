@@ -1,5 +1,9 @@
 .header__logo {
   width: calc(103.74px + 38.26 * ((100vw - 320px) / (1280 - 320)));
   margin-bottom: calc(31.6px + 9.4 * ((100vw - 320px) / (1280 - 320)));
-  margin-left: calc(27px + 173 * ((100vw - 320px) / (1280 - 320)));
+}
+@media screen and (max-width: 320px) {
+  .header__logo {
+    margin-left: 25px;
+  }
 }

@@ -1,5 +1,5 @@
 .content {
   width: calc(282px + 598 * ((100vw - 320px) / (1280 - 320)));
-  max-width: 100%;
+  max-width: 880px;
   margin: 0 auto;
 }

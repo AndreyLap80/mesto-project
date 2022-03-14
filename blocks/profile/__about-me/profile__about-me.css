@@ -1,4 +1,7 @@
 .profile__about-me {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: calc(14px + 4 * ((100vw - 320px) / (1280 - 320)));
   line-height: calc(17px + 5 * ((100vw - 320px) / (1280 - 320)));
 }

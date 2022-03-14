@@ -1,9 +1,24 @@
 .header {
-  position: absolute;
-  left: 0;
-  top: calc(28px + 17 * ((100vw - 320px) / (1280 - 320)));
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 100%;
+  margin: 45px auto 0;
+  width: 68.75%;
+  max-width: 880px;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+}
+@media screen and (max-width: 768px) {
+  .header {
+    margin: 37px auto 0;
+    width: 73%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .header {
+    margin: 30px auto 0;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .header {
+    margin: 28px auto 0;
+    width: 100%;
+  }
 }

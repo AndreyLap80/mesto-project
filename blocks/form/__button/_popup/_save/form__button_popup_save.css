@@ -1,5 +1,5 @@
-.popup__button {
-  margin: 48px auto 0;
+.form__button_popup_save {
+  margin: 48px auto 37px;
   width: calc(238px + 120 * ((100vw - 320px) / (1280 - 320)));
   height: calc(46px + 4 * ((100vw - 320px) / (1280 - 320)));
   background-color: #000000;
@@ -12,6 +12,11 @@
   text-align: center;
   transition: 0.5s;
 }
-.popup__button:hover {
+.form__button_popup_save:hover {
   opacity: 0.8;
+}
+@media screen and (max-width: 320px) {
+  .form__button_popup_save {
+    margin: 45px auto 25px;
+  }
 }

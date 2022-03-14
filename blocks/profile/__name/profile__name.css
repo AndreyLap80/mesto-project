@@ -1,5 +1,8 @@
 .profile__name {
-  margin-top: 23px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 25px;
   margin-bottom: 10px;
   font-weight: 500;
   font-size: calc(27px + 15 * ((100vw - 320px) / (1280 - 320)));
