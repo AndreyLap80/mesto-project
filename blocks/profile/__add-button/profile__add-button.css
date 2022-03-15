@@ -1,4 +1,7 @@
 .profile__add-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: #000000;
   background-image: url(../../../images/Add_Button.svg);
   background-repeat: no-repeat;

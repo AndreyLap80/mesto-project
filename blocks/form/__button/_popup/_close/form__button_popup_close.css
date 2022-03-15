@@ -1,4 +1,7 @@
 .form__button_popup_close {
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: rgb(0, 0, 0, 0);
   background-image: url(../../../../../images/Close_Icon.svg);
   background-repeat: no-repeat;

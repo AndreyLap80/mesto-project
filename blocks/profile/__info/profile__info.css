@@ -1,4 +1,6 @@
 .profile__info {
+  margin: 0;
+  padding: 0;
   margin-left: calc(10px + 21 * ((100vw - 425px) / (1280 - 425)));
   margin-right: calc(12px + 8 * ((100vw - 320px) / (1280 - 320)));
 }

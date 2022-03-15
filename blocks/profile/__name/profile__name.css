@@ -1,15 +1,18 @@
 .profile__name {
+  margin: 0;
+  padding: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 25px;
-  margin-bottom: 10px;
+  margin-top: 22px;
+  margin-bottom: 8px;
   font-weight: 500;
   font-size: calc(27px + 15 * ((100vw - 320px) / (1280 - 320)));
   line-height: calc(32.68px + 15.32 * ((100vw - 320px) / (1280 - 320)));
 }
 @media screen and (max-width: 450px) {
   .profile__name {
-    margin-top: calc(24.25px + 21 * ((100vw - 320px) / (1280 - 320)));
+    margin-top: calc(29px + 18 * ((100vw - 320px) / (1280 - 320)));
+    margin-bottom: 6px;
   }
 }

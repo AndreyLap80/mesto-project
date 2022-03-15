@@ -1,4 +1,7 @@
 .profile__edit-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
   margin-top: calc(34px + 4 * ((100vw - 320px) / (1280 - 320)));
   background: #000000;
   background-image: url(../../../images/Edit_Button.svg);

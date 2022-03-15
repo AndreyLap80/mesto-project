@@ -1,4 +1,6 @@
 .popup__heading {
+  margin: 0;
+  padding: 0;
   align-self: start;
   margin: 34px 0 50px 36px;
   text-align: left;

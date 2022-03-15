@@ -1,7 +1,10 @@
 .form__button_popup_save {
+  padding: 0;
+  border: 0;
   margin: 48px auto 37px;
   width: calc(238px + 120 * ((100vw - 320px) / (1280 - 320)));
   height: calc(46px + 4 * ((100vw - 320px) / (1280 - 320)));
+  cursor: pointer;
   background-color: #000000;
   color: #ffffff;
   border-radius: 2px;

@@ -1,4 +1,6 @@
 .profile {
+  margin: 0;
+  padding: 0;
   padding-top: 40px;
   margin-bottom: calc(36px + 15 * ((100vw - 320px) / (1280 - 320)));
   display: grid;
