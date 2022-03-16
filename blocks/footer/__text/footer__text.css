@@ -5,7 +5,6 @@
   font-size: calc(14px + 4 * ((100vw - 320px) / (1280 - 320)));
   line-height: calc(17px + 5 * ((100vw - 320px) / (1280 - 320)));
   color: #545454;
-  margin-left: calc(19px + 181 * ((100vw - 320px) / (1280 - 320)));
   margin-top: calc(48px + 19 * ((100vw - 320px) / (1280 - 320)));
   padding-bottom: calc(36px + 24 * ((100vw - 320px) / (1280 - 320)));
 }
