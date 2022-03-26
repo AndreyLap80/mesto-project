@@ -1,0 +1,25 @@
+.form__button_popup_close-card {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(0, 0, 0, 0);
+  background-image: url(../../../../../images/Close_Icon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: -40px;
+  right: -3.1vw;
+  width: calc(20px + 12 * ((100vw - 320px) / (1280 - 320)));
+  height: calc(20px + 12 * ((100vw - 320px) / (1280 - 320)));
+  cursor: pointer;
+  transition: 0.5s;
+}
+.form__button_popup_close-card:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 320px) {
+  .form__button_popup_close-card {
+    top: -37px;
+    right: -0.5vw;
+  }
+}
