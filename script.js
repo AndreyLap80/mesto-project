@@ -44,7 +44,7 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 //добавление карточки
-
+const formElementCard = document.querySelector('.popup__form_card');
 const elementsContainer = document.querySelector('.elements');
 const saveElements = document.querySelector('.form__button_popup_save');
 
@@ -53,13 +53,14 @@ function addElements(designationValue, pictureValue) {
   const newElement = elementsTemplate.querySelector('.elements__rectangle').cloneNode(true);
 
   newElement.querySelector('.elements__text').textContent = designationValue;
-  newElement.querySelector('.elements__mask-group').textContent = pictureValue;
+  newElement.querySelector('.elements__mask-group').src = pictureValue;
   newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
   });
-  elementsContainer.append(newElement);
+  elementsContainer.prepend(newElement);
+  popupClosed()
 }
-saveElements.addEventListener('submit', function () {
+formElementCard.addEventListener('submit', function () {
   const designationInput = document.querySelector('.form__input_popup_designation');
   const pictureInput = document.querySelector('.form__input_popup_link-picture');
 
