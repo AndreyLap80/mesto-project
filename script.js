@@ -1,8 +1,16 @@
 const editButton = document.querySelector('.profile__edit-button');
+const formElement = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.form__input_popup_name');
+const jobInput = document.querySelector('.form__input_popup_about');
+const profileInfo = document.querySelector('.profile__info');
 const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelector('.form__button_popup_close');
 const popupClosecard = document.querySelector('.form__button_popup_close-card');
 const elementsDelete = document.querySelector('.elements__delete');
+const formElementCard = document.querySelector('.popup__form_card');
+const saveElements = document.querySelector('.form__button_popup_save');
+const elementsContainer = document.querySelector('.elements');
+const elementsTemplate = document.querySelector('#elements-template').content;
 const initialCards = [
   {
     name: 'Архыз',
@@ -30,6 +38,20 @@ const initialCards = [
   }
 ];
 
+//загрузка карточек
+initialCards.forEach(function (element) {
+  const newElement = elementsTemplate.cloneNode(true);
+  newElement.querySelector('.elements__text').textContent = element.name;
+  newElement.querySelector('.elements__mask-group').src = element.link;
+  newElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
+    const element = evt.target.closest('.elements__rectangle').remove();
+  });
+  newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like_active');
+  });
+  elementsContainer.prepend(newElement);
+});
+
 //функции работы с попапом
 function popupClosed() {
   const popupOpenedcard = document.querySelector('.popup_opened_card');
@@ -45,40 +67,25 @@ function openPopupprofile() {
   popupOpenedprofile.setAttribute('style', 'display: flex');
 }
 editButton.addEventListener('click', openPopupprofile);
-
 function popupOpenedcard() {
   const popupOpenedcard = document.querySelector('.popup_opened_card');
   popupOpenedcard.setAttribute('style', 'display: flex');
-
 }
 
-
 //редактирование форм
-const formElement = document.querySelector('.popup__form');
-const nameInput = document.querySelector('.form__input_popup_name');
-const jobInput = document.querySelector('.form__input_popup_about');
-const profileInfo = document.querySelector('.profile__info');
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileInfo.innerHTML = `<div class="profile__info">
   <h1 class="profile__name">${nameInput.value}</h1>
   <p class="profile__about-me">${jobInput.value}</p>
   </div>`;
-
   popupClosed()
 }
 formElement.addEventListener('submit', formSubmitHandler);
 
 //добавление карточки
-const formElementCard = document.querySelector('.popup__form_card');
-const elementsContainer = document.querySelector('.elements');
-const saveElements = document.querySelector('.form__button_popup_save');
-
 function addElements(designationValue, pictureValue) {
-  const elementsTemplate = document.querySelector('#elements-template').content;
   const newElement = elementsTemplate.querySelector('.elements__rectangle').cloneNode(true);
-
   newElement.querySelector('.elements__text').textContent = designationValue;
   newElement.querySelector('.elements__mask-group').src = pictureValue;
   newElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
@@ -90,18 +97,14 @@ function addElements(designationValue, pictureValue) {
   elementsContainer.prepend(newElement);
   popupClosed()
 }
+
 formElementCard.addEventListener('submit', function () {
   const designationInput = document.querySelector('.form__input_popup_designation');
   const pictureInput = document.querySelector('.form__input_popup_link-picture');
-
   addElements(designationInput.value, pictureInput.value);
-
   designationInput.value = '';
   pictureInput.value = '';
 });
 
-elementsDelete.addEventListener('click', function (evt) {
-  const element = evt.target.closest('.elements__rectangle').remove();
-});
 
 
