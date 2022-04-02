@@ -2,6 +2,33 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelector('.form__button_popup_close');
 const popupClosecard = document.querySelector('.form__button_popup_close-card');
+const elementsDelete = document.querySelector('.elements__delete');
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 //функции работы с попапом
 function popupClosed() {
@@ -12,7 +39,7 @@ function popupClosed() {
 }
 popupClose.addEventListener('click', popupClosed);
 popupClosecard.addEventListener('click', popupClosed);
-
+addButton.addEventListener('click', popupOpenedcard);
 function openPopupprofile() {
   const popupOpenedprofile = document.querySelector('.popup_opened_profile');
   popupOpenedprofile.setAttribute('style', 'display: flex');
@@ -24,7 +51,7 @@ function popupOpenedcard() {
   popupOpenedcard.setAttribute('style', 'display: flex');
 
 }
-addButton.addEventListener('click', popupOpenedcard);
+
 
 //редактирование форм
 const formElement = document.querySelector('.popup__form');
@@ -54,6 +81,9 @@ function addElements(designationValue, pictureValue) {
 
   newElement.querySelector('.elements__text').textContent = designationValue;
   newElement.querySelector('.elements__mask-group').src = pictureValue;
+  newElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
+    const element = evt.target.closest('.elements__rectangle').remove();
+  });
   newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
   });
@@ -70,7 +100,8 @@ formElementCard.addEventListener('submit', function () {
   pictureInput.value = '';
 });
 
-
-
+elementsDelete.addEventListener('click', function (evt) {
+  const element = evt.target.closest('.elements__rectangle').remove();
+});
 
 
