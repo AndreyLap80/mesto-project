@@ -6,8 +6,13 @@ const profileInfo = document.querySelector('.profile__info');
 const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelector('.form__button_popup_close');
 const popupClosecard = document.querySelector('.form__button_popup_close-card');
+const popupCloseimg = document.querySelector('.form__button_popup_close-image');
+const popupOpenedimg = document.querySelector('.popup_opened_image');
+const popupOpenedcard = document.querySelector('.popup_opened_card');
+const popupOpenedprofile = document.querySelector('.popup_opened_profile');
 const elementsDelete = document.querySelector('.elements__delete');
-const formElementCard = document.querySelector('.popup__form_card');
+const elementsimg = document.querySelector('.elements__mask-group');
+const formElementCard = document.querySelector('.form_card');
 const saveElements = document.querySelector('.form__button_popup_save');
 const elementsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elements-template').content;
@@ -39,38 +44,71 @@ const initialCards = [
 ];
 
 //загрузка карточек
-initialCards.forEach(function (element) {
+const cardElements = function ({ name, link }) {
   const newElement = elementsTemplate.cloneNode(true);
-  newElement.querySelector('.elements__text').textContent = element.name;
-  newElement.querySelector('.elements__mask-group').src = element.link;
+  newElement.querySelector('.elements__text').textContent = name;
+  newElement.querySelector('.elements__mask-group').src = link;
+  newElement.querySelector('.elements__mask-group').addEventListener('click', function (evt) {
+    evt.target.closest('.elements__rectangle');
+    openPopupimg({ name, link });
+  });
   newElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
-    const element = evt.target.closest('.elements__rectangle').remove();
+    evt.target.closest('.elements__rectangle').remove();
   });
   newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
   });
   elementsContainer.prepend(newElement);
+};
+initialCards.forEach(cardElements);
+
+
+
+
+function openPopupimg({ name, link }) {
+  let popupImg = document.querySelector('.popup__image');
+  let popupText = document.querySelector('.popup__text')
+  popupImg.src = link;
+  popupText.textContent = name;
+  popupOpenedimg.classList.add('popup_opened');
+}
+
+
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_opened');
+}
+
+editButton.addEventListener('click', function () {
+  openPopup(popupOpenedprofile);
+});
+addButton.addEventListener('click', function () {
+  openPopup(popupOpenedcard);
 });
 
-//функции работы с попапом
-function popupClosed() {
-  const popupOpenedcard = document.querySelector('.popup_opened_card');
-  const popupOpenedprofile = document.querySelector('.popup_opened_profile');
-  popupOpenedcard.setAttribute('style', 'display: none');
-  popupOpenedprofile.setAttribute('style', 'display: none');
+function closePopup(popupElement) {
+  popupElement.classList.remove('popup_opened');
 }
-popupClose.addEventListener('click', popupClosed);
-popupClosecard.addEventListener('click', popupClosed);
-addButton.addEventListener('click', popupOpenedcard);
-function openPopupprofile() {
-  const popupOpenedprofile = document.querySelector('.popup_opened_profile');
-  popupOpenedprofile.setAttribute('style', 'display: flex');
+popupCloseimg.addEventListener('click', function () {
+  closePopup(popupOpenedimg);
+});
+popupClose.addEventListener('click', function () {
+  closePopup(popupOpenedprofile);
+});
+popupClosecard.addEventListener('click', function () {
+  closePopup(popupOpenedcard);
+});
+//добавление карточки
+
+function addElements(evt) {
+  evt.preventDefault();
+  let designationInput = document.querySelector('.form__input_popup_designation');
+  let pictureInput = document.querySelector('.form__input_popup_link-picture');
+  name = designationInput.value
+  link = pictureInput.value
+  cardElements({ name, link })
+  closePopup(popupOpenedcard)
 }
-editButton.addEventListener('click', openPopupprofile);
-function popupOpenedcard() {
-  const popupOpenedcard = document.querySelector('.popup_opened_card');
-  popupOpenedcard.setAttribute('style', 'display: flex');
-}
+formElementCard.addEventListener('submit', addElements);
 
 //редактирование форм
 function formSubmitHandler(evt) {
@@ -79,32 +117,11 @@ function formSubmitHandler(evt) {
   <h1 class="profile__name">${nameInput.value}</h1>
   <p class="profile__about-me">${jobInput.value}</p>
   </div>`;
-  popupClosed()
+  closePopup(popupOpenedprofile);
 }
 formElement.addEventListener('submit', formSubmitHandler);
 
-//добавление карточки
-function addElements(designationValue, pictureValue) {
-  const newElement = elementsTemplate.querySelector('.elements__rectangle').cloneNode(true);
-  newElement.querySelector('.elements__text').textContent = designationValue;
-  newElement.querySelector('.elements__mask-group').src = pictureValue;
-  newElement.querySelector('.elements__delete').addEventListener('click', function (evt) {
-    const element = evt.target.closest('.elements__rectangle').remove();
-  });
-  newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('elements__like_active');
-  });
-  elementsContainer.prepend(newElement);
-  popupClosed()
-}
 
-formElementCard.addEventListener('submit', function () {
-  const designationInput = document.querySelector('.form__input_popup_designation');
-  const pictureInput = document.querySelector('.form__input_popup_link-picture');
-  addElements(designationInput.value, pictureInput.value);
-  designationInput.value = '';
-  pictureInput.value = '';
-});
 
 
 
