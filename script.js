@@ -49,13 +49,14 @@ const initialCards = [
   }
 ];
 
-//загрузка карточек
-const elementsCard = function ({ name, link }) {
+//Создание карточек
+function createCard({ name, link }) {
   const newElement = elementsTemplate.cloneNode(true);
-  const elementsImg = document.querySelector('.elements__mask-group');
+  let elementImg = newElement.querySelector('.elements__mask-group')
   newElement.querySelector('.elements__text').textContent = name;
-  newElement.querySelector('.elements__mask-group').src = link;
-  newElement.querySelector('.elements__mask-group').addEventListener('click', function (evt) {
+  elementImg.src = link;
+  elementImg.alt = name;
+  elementImg.addEventListener('click', function (evt) {
     evt.target.closest('.elements__rectangle');
     openPopupImg({ name, link });
   });
@@ -65,9 +66,30 @@ const elementsCard = function ({ name, link }) {
   newElement.querySelector('.elements__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
   });
+  return newElement;
+}
+
+//Вставка в разметку в качестве параметра принимает новый элемент
+function insertIntoMarkup(newElement) {
   elementsContainer.prepend(newElement);
-};
-initialCards.forEach(elementsCard);
+}
+
+//начальная инициализация карточек
+initialCards.forEach(function (newCard) {
+  insertIntoMarkup(createCard(newCard));
+});
+
+//добавление карточки
+function addElements(evt) {
+  evt.preventDefault();
+  name = designationInput.value
+  link = pictureInput.value
+  insertIntoMarkup(createCard({ name, link }));
+  designationInput.value = '';
+  pictureInput.value = '';
+  closePopup(popupOpenedCard)
+}
+formElementCard.addEventListener('submit', addElements);
 
 function openPopupImg({ name, link }) {
   popupImg.src = link;
@@ -75,7 +97,6 @@ function openPopupImg({ name, link }) {
   popupImg.alt = name;
   openPopup(popupOpenedImg);
 }
-
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
 }
@@ -101,18 +122,6 @@ popupClose.addEventListener('click', function () {
 popupCloseCard.addEventListener('click', function () {
   closePopup(popupOpenedCard);
 });
-//добавление карточки
-
-function addElements(evt) {
-  evt.preventDefault();
-  name = designationInput.value
-  link = pictureInput.value
-  elementsCard({ name, link })
-  designationInput.value = '';
-  pictureInput.value = '';
-  closePopup(popupOpenedCard)
-}
-formElementCard.addEventListener('submit', addElements);
 
 //редактирование форм
 function submitHandlerForm(evt) {
