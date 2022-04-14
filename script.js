@@ -4,18 +4,12 @@ const nameInput = document.querySelector('.form__input_popup_name');
 const jobInput = document.querySelector('.form__input_popup_about');
 const pofileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about-me');
-const profileInfo = document.querySelector('.profile__info');
 const addButton = document.querySelector('.profile__add-button');
-const popupClose = document.querySelector('.form__button_popup_close');
-const popupCloseCard = document.querySelector('.form__button_popup_close-card');
-const popupCloseImg = document.querySelector('.form__button_popup_close-image');
+const popupClose = document.querySelectorAll('.form__button_close');
 const popupOpenedImg = document.querySelector('.popup_opened_image');
 const popupOpenedCard = document.querySelector('.popup_opened_card');
 const popupOpenedProfile = document.querySelector('.popup_opened_profile');
-const elementsDelete = document.querySelector('.elements__delete');
-const elementsImg = document.querySelector('.elements__mask-group');
 const formElementCard = document.querySelector('.form_card');
-const saveElements = document.querySelector('.form__button_popup_save');
 const elementsContainer = document.querySelector('.elements');
 const popupImg = document.querySelector('.popup__image');
 const popupText = document.querySelector('.popup__text')
@@ -52,7 +46,7 @@ const initialCards = [
 //Создание карточек
 function createCard({ name, link }) {
   const newElement = elementsTemplate.cloneNode(true);
-  let elementImg = newElement.querySelector('.elements__mask-group')
+  const elementImg = newElement.querySelector('.elements__mask-group')
   newElement.querySelector('.elements__text').textContent = name;
   elementImg.src = link;
   elementImg.alt = name;
@@ -113,14 +107,17 @@ addButton.addEventListener('click', function () {
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
-popupCloseImg.addEventListener('click', function () {
-  closePopup(popupOpenedImg);
+
+popupClose.forEach(button => {
+  button.addEventListener('click', function () { closePopup(popupOpenedImg); })
 });
-popupClose.addEventListener('click', function () {
-  closePopup(popupOpenedProfile);
+
+popupClose.forEach(button => {
+  button.addEventListener('click', function () { closePopup(popupOpenedProfile); })
 });
-popupCloseCard.addEventListener('click', function () {
-  closePopup(popupOpenedCard);
+
+popupClose.forEach(button => {
+  button.addEventListener('click', function () { closePopup(popupOpenedCard); })
 });
 
 //редактирование форм

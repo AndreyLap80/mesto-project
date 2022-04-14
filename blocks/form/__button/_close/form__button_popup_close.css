@@ -1,9 +1,9 @@
-.form__button_popup_close-image {
+.form__button_close {
   margin: 0;
   padding: 0;
   border: 0;
   background: rgb(0, 0, 0, 0);
-  background-image: url(../../../../../images/Close_Icon.svg);
+  background-image: url(../../../../images/Close_Icon.svg);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -14,11 +14,11 @@
   cursor: pointer;
   transition: 0.5s;
 }
-.form__button_popup_close-image:hover {
+.form__button_popup_close:hover {
   opacity: 0.6;
 }
 @media screen and (max-width: 320px) {
-  .form__button_popup_close-image {
+  .form__button_popup_close {
     top: -37px;
     right: -0.5vw;
   }
