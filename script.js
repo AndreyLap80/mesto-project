@@ -6,6 +6,7 @@ const pofileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about-me');
 const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelectorAll('.form__button_close');
+const popup = document.querySelectorAll('.popup');
 const popupOpenedImg = document.querySelector('.popup_opened_image');
 const popupOpenedCard = document.querySelector('.popup_opened_card');
 const popupOpenedProfile = document.querySelector('.popup_opened_profile');
@@ -91,8 +92,22 @@ function openPopupImg({ name, link }) {
   popupImg.alt = name;
   openPopup(popupOpenedImg);
 }
+
 function openPopup(popupElement) {
-  popupElement.classList.add('popup_opened');
+  popupElement.classList.add('popup_opened'); //открыть попапа
+  popupElement.addEventListener("click", function (e) {
+    if (!e.target.closest('.popup__container,.popup__container-image')) {
+      closePopup(e.target.closest('.popup'));
+    } //закрыть попапа по клику на оверлей
+  })
+  document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape") {
+      const popupActive = document.querySelector('.popup.popup_opened');
+      if (popupActive) {
+        closePopup(popupActive);
+      }
+    }////закрыть попапа по нажатию на клавишу Esc.
+  });
 }
 
 editButton.addEventListener('click', function () {
@@ -109,15 +124,9 @@ function closePopup(popupElement) {
 }
 
 popupClose.forEach(button => {
-  button.addEventListener('click', function () { closePopup(popupOpenedImg); })
-});
-
-popupClose.forEach(button => {
-  button.addEventListener('click', function () { closePopup(popupOpenedProfile); })
-});
-
-popupClose.forEach(button => {
-  button.addEventListener('click', function () { closePopup(popupOpenedCard); })
+  button.addEventListener('click', function (e) {
+    closePopup(e.target.closest('.popup'));
+  })
 });
 
 //редактирование форм
