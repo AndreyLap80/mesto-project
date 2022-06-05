@@ -6,7 +6,7 @@ const pofileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about-me');
 const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelectorAll('.form__button_close');
-const popup = document.querySelectorAll('.popup');
+//const popup = document.querySelectorAll('.popup');
 const popupOpenedImg = document.querySelector('.popup_opened_image');
 const popupOpenedCard = document.querySelector('.popup_opened_card');
 const popupOpenedProfile = document.querySelector('.popup_opened_profile');
@@ -139,6 +139,67 @@ function submitHandlerForm(evt) {
 formElement.addEventListener('submit', submitHandlerForm);
 
 
+//валидация форм
 
+const showInputError = (forms, inputElement, errorMessage) => {
+  const errorElement = forms.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('form__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('form__input-error_active');
+};
+
+const hideInputError = (forms, inputElement) => {
+  const errorElement = forms.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('form__input_type_error');
+  errorElement.classList.remove('form__input-error_active');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (forms, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(forms, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(forms, inputElement);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+};
+
+const toggleButton = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add('form__button_disabled');
+  } else {
+    buttonElement.removeAttribute('disabled');
+    buttonElement.classList.remove('form__button_disabled');
+  }
+};
+
+const setEventListeners = (forms) => {
+  const inputList = Array.from(forms.querySelectorAll('.form__input'));
+  const buttonElement = forms.querySelector('.form__button_popup_save');
+  toggleButton(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(forms, inputElement);
+      toggleButton(inputList, buttonElement);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+  formList.forEach((forms) => {
+    forms.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(forms);
+  });
+};
+enableValidation();
 
 

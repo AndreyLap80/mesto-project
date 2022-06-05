@@ -1,0 +1,10 @@
+.form__field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 34px;
+}
+
+.form__field:last-of-type {
+  margin: 0;
+}
