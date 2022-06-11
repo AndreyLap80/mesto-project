@@ -33,7 +33,7 @@ function openPopup(popupElement) {
       if (popupActive) {
         closePopup(popupActive);
       }
-    }////закрыть попапа по нажатию на клавишу Esc.
+    }//закрыть попапа по нажатию на клавишу Esc.
   });
 }
 

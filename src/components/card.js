@@ -1,4 +1,4 @@
-import { editButton, formElement, nameInput, jobInput, pofileName, profileAbout, addButton, popupClose, popupOpenedImg, popupOpenedCard, popupOpenedProfile, popupImg, popupText, openPopupImg, openPopup, closePopup, submitHandlerForm } from './modal.js'
+import { popupOpenedCard, openPopupImg, closePopup } from './modal.js'
 const formElementCard = document.querySelector('.form_card');
 const elementsContainer = document.querySelector('.elements');
 const designationInput = document.querySelector('.form__input_popup_designation');
@@ -58,9 +58,11 @@ function insertIntoMarkup(newElement) {
 //добавление карточки
 function addElements(evt) {
   evt.preventDefault();
-  name = designationInput.value
-  link = pictureInput.value
-  insertIntoMarkup(createCard({ name, link }));
+  const newCard = {
+    name: designationInput.value,
+    link: pictureInput.value
+  }
+  insertIntoMarkup(createCard(newCard));
   designationInput.value = '';
   pictureInput.value = '';
   closePopup(popupOpenedCard)

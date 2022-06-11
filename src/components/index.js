@@ -6,7 +6,7 @@ import { showInputError, hideInputError, inputValidity, invalidInput, toggleButt
 initialCards.forEach(function (newCard) {
   insertIntoMarkup(createCard(newCard));
 });
-formElementCard.addEventListener('submit', addElements);
+formElementCard.addEventListener('submit', addElements, toggleButton);
 
 editButton.addEventListener('click', function () {
   nameInput.value = pofileName.textContent;
