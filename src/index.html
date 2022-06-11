@@ -4,17 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./pages/index.css" />
   <title>Места России</title>
 </head>
 
 <body class="page">
   <header class="header">
-    <img src="./images/header_logo.svg" alt="Mesto Russia" class="header__logo" />
+    <img src="<%=require('./images/header_logo.svg')%>" alt="Mesto Russia" class="header__logo" />
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./images/Jac-Coosto.jpg" alt="аватар" class="profile__avatar" />
+      <img src="<%=require('./images/Jac-Coosto.jpg')%>" alt="аватар" class="profile__avatar" />
       <div class="profile__info">
         <h1 class="profile__name">Жак&#8209;Ив&nbsp;Кусто</h1>
         <p class="profile__about-me">Исследователь океана</p>
@@ -86,7 +85,6 @@
       </div>
     </div>
   </template>
-  <script type="module" src="./src/components/index.js"></script>
 </body>
 
 </html>

@@ -27,18 +27,22 @@ function openPopup(popupElement) {
       closePopup(e.target.closest('.popup'));
     } //закрыть попапа по клику на оверлей
   })
-  document.addEventListener('keydown', function (event) {
-    if (event.key === "Escape") {
-      const popupActive = document.querySelector('.popup.popup_opened');
-      if (popupActive) {
-        closePopup(popupActive);
-      }
-    }//закрыть попапа по нажатию на клавишу Esc.
-  });
+  document.addEventListener('keydown', escClose)//слушитель по нажатию на клавишу Esc.
 }
+
+function escClose(event) {
+  if (event.key === "Escape") {
+    const popupActive = document.querySelector('.popup.popup_opened');
+    if (popupActive) {
+      closePopup(popupActive);
+    }
+  }//закрыть попапа по нажатию на клавишу Esc.
+};
+
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escClose)
 }
 
 function submitHandlerForm(evt) {

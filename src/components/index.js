@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import { formElementCard, elementsContainer, designationInput, pictureInput, elementsTemplate, initialCards, createCard, insertIntoMarkup, addElements } from './card.js'
 import { editButton, formElement, nameInput, jobInput, pofileName, profileAbout, addButton, popupClose, popupOpenedImg, popupOpenedCard, popupOpenedProfile, popupImg, popupText, openPopupImg, openPopup, closePopup, submitHandlerForm } from './modal.js'
 import { showInputError, hideInputError, inputValidity, invalidInput, toggleButton, setEventListeners, enableValidation } from './validate.js';
