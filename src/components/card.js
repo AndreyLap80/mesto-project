@@ -63,8 +63,8 @@ function addElements(evt) {
     link: pictureInput.value
   }
   insertIntoMarkup(createCard(newCard));
-  designationInput.value = '';
-  pictureInput.value = '';
+  this.reset();
+
   closePopup(popupOpenedCard)
 }
 
