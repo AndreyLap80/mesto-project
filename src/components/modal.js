@@ -9,7 +9,6 @@ const addButton = document.querySelector('.profile__add-button');
 const popupClose = document.querySelectorAll('.form__button_close');
 const popupOpenedImg = document.querySelector('.popup_opened_image');
 const popupOpenedCard = document.querySelector('.popup_opened_card');
-const buttonPopupSave = document.querySelectorAll('.form__button_popup_save');
 const popupOpenedProfile = document.querySelector('.popup_opened_profile');
 const popupImg = document.querySelector('.popup__image');
 const popupText = document.querySelector('.popup__text')
@@ -22,10 +21,7 @@ function openPopupImg({ name, link }) {
 }
 
 function openPopup(popupElement) {
-  buttonPopupSave.forEach((buttonDisabled) => {
-    buttonDisabled.setAttribute('disabled', true);
-    buttonDisabled.classList.add('form__button_disabled')
-  });
+
   popupElement.classList.add('popup_opened'); //открыть попапа
   document.addEventListener('mousedown', overlayClose)  //слушатель по клику на оверлей.
   document.addEventListener('keydown', escClose)//слушатель по нажатию на клавишу Esc.

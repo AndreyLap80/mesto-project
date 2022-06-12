@@ -3,6 +3,7 @@ import { formElementCard, elementsContainer, designationInput, pictureInput, ele
 import { editButton, formElement, nameInput, jobInput, pofileName, profileAbout, addButton, popupClose, popupOpenedImg, popupOpenedCard, popupOpenedProfile, popupImg, popupText, openPopupImg, openPopup, closePopup, submitHandlerForm } from './modal.js'
 import { showInputError, hideInputError, inputValidity, invalidInput, toggleButton, setEventListeners, enableValidation } from './validate.js';
 
+
 //начальная инициализация карточек
 initialCards.forEach(function (newCard) {
   insertIntoMarkup(createCard(newCard));
@@ -15,6 +16,11 @@ editButton.addEventListener('click', function () {
   openPopup(popupOpenedProfile);
 });
 addButton.addEventListener('click', function () {
+  const buttonPopupSave = document.querySelectorAll('.form__button_popup_save');
+  buttonPopupSave.forEach((buttonDisabled) => {
+    buttonDisabled.setAttribute('disabled', true);
+    buttonDisabled.classList.add('form__button_disabled')
+  });
   openPopup(popupOpenedCard);
 });
 
