@@ -11,4 +11,9 @@ https://andreylap80.github.io/mesto-project/
 Flexbox
 Grid-layout
 Адаптивная верстка под размеры экранов 1280px, 320px.
-Nested БЭМ git HTML CSS JS Webpack
+ БЭМ
+ git
+ HTML 
+ CSS
+ JS
+ Webpack

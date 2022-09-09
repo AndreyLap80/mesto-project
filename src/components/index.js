@@ -1,12 +1,11 @@
 import '../pages/index.css';
-import { linkAvatar, formElementCard, formCardDelete, formAvatar, elementsContainer, designationInput, pictureInput, elementsTemplate, pofileAvatar, createCard, insertIntoMarkup, submitAvatarForm, submitCardDelete, addElements } from './card.js'
-import { renderLoading, editButton, avatarEditButton, formElement, nameInput, jobInput, pofileName, profileAbout, addButton, popupClose, popupOpenedImg, popupOpenedCard, popupOpenedProfile, popupOpenedAvatar, openPopupAll, popupImg, popupText, openPopupImg, openPopup, closePopup, submitHandlerForm, popupOpenedCardDelete } from './modal.js'
-import { showInputError, hideInputError, inputValidity, invalidInput, toggleButton, setEventListeners, enableValidation } from './validate.js';
+import { createCard, insertIntoMarkup, addElements } from './card.js'
+import { profileAbout, pofileName, pofileAvatar, popupOpenedAvatar, popupOpenedCard, popupOpenedCardDelete, addButton, popupClose, nameInput, jobInput, formElement, editButton, avatarEditButton, formElementCard, formAvatar, formCardDelete, linkAvatar, designationInput, pictureInput, } from './constants.js'
+import { renderLoading, popupOpenedProfile, openPopup, closePopup, submitHandlerForm, } from './modal.js'
+import { toggleButton, enableValidation } from './validate.js';
 import { initialCards, meInfo, deleteCards, newCards, likesDeleteFetch, editingProfile, likesFetch, editAvatar } from './api.js';
-export const meID = {};
-export const cardInfo = {};
-
-
+const meID = {};
+const cardInfo = {};
 //начальная инициализация карточек
 
 meInfo().then((data) => {
@@ -26,8 +25,8 @@ initialCards().then(res => res.forEach(card => {
     owner: card.owner._id,
     _id: card._id
   }
-  insertIntoMarkup(createCard(newCard));
-  cardInfo.info = card
+  insertIntoMarkup(createCard(newCard, getLikes, meID));
+  cardInfo.info = res
 })
 ).catch((err) => {
   console.log(err);
@@ -37,7 +36,7 @@ initialCards().then(res => res.forEach(card => {
 
 formElementCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  renderLoading(true)
+  renderLoading(true, evt.submitter)
   newCards({
     name: designationInput.value,
     link: pictureInput.value
@@ -49,7 +48,7 @@ formElementCard.addEventListener('submit', function (evt) {
       owner: res.owner._id,
       _id: res._id
     }
-    addElements(newCard)
+    addElements(newCard, getLikes, meID)
     this.reset();
   }).catch((err) => {
     console.log(err);
@@ -61,7 +60,7 @@ formElementCard.addEventListener('submit', function (evt) {
 
 
 //лайк
-export function getLikes(id, elementLikes, elementLikesCounter) {
+function getLikes(id, elementLikes, elementLikesCounter) {
   if (elementLikes.classList.contains('elements__like_active')) {
     likesDeleteFetch(id).then((res) => {
       elementLikesCounter.textContent = res.likes.length
@@ -78,14 +77,15 @@ export function getLikes(id, elementLikes, elementLikesCounter) {
   }
 }
 
+//аватар
 formAvatar.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  renderLoading(true)
+  renderLoading(true, evt.submitter)
   editAvatar(
     linkAvatar.value
   ).then((res) => {
-    const newAvatar = res.avatar
-    submitAvatarForm(newAvatar)
+    pofileAvatar.src = res.avatar
+    closePopup(popupOpenedAvatar);
     this.reset();
   }).catch((err) => {
     console.log(err);
@@ -95,35 +95,26 @@ formAvatar.addEventListener('submit', function (evt) {
     });
 }, toggleButton);
 
-formCardDelete.addEventListener('submit', function submitCardDelete(evt) {
-  evt.preventDefault();
-  deleteCards(evt.target.id)
-  closePopup(popupOpenedCardDelete);
-});
+//удаление карточки
+export function deleteCard(id) {
+  deleteCards(id).then(() => {
+    document.getElementById(id).remove()
+    closePopup(popupOpenedCardDelete);
+  })
+    .catch((err) => {
+      console.log(err);
+    })
 
+}
 editButton.addEventListener('click', function () {
   nameInput.value = pofileName.textContent;
   jobInput.value = profileAbout.textContent;
   openPopup(popupOpenedProfile);
 });
 
+addButton.addEventListener('click', () => openPopup(popupOpenedCard))
+avatarEditButton.addEventListener('click', () => openPopup(popupOpenedAvatar))
 
-addButton.addEventListener('click', function () {
-  const buttonPopupSave = document.querySelectorAll('.form__button_popup_save');
-  buttonPopupSave.forEach((buttonDisabled) => {
-    buttonDisabled.setAttribute('disabled', true);
-    buttonDisabled.classList.add('form__button_disabled')
-  });
-  openPopup(popupOpenedCard);
-});
-avatarEditButton.addEventListener('click', function () {
-  const buttonPopupSave = document.querySelectorAll('.form__button_popup_save');
-  buttonPopupSave.forEach((buttonDisabled) => {
-    buttonDisabled.setAttribute('disabled', true);
-    buttonDisabled.classList.add('form__button_disabled')
-  });
-  openPopup(popupOpenedAvatar);
-});
 
 popupClose.forEach(button => {
   button.addEventListener('click', function (e) {
@@ -131,18 +122,18 @@ popupClose.forEach(button => {
   })
 });
 
+//редактировать профиль
+
 formElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  renderLoading(true)
+  renderLoading(true, evt.submitter)
   editingProfile({
     name: nameInput.value,
     about: jobInput.value
   }).then((res) => {
-    const profile = {
-      name: res.name,
-      about: res.about,
-    }
-    submitHandlerForm(profile)
+    pofileName.textContent = res.name,
+      profileAbout.textContent = res.about
+    closePopup(popupOpenedProfile);
   })
     .catch((err) => {
       console.log(err);

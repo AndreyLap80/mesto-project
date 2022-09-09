@@ -1,40 +1,34 @@
-import { popupOpenedCard, openPopupImg, openPopup, closePopup, popupOpenedAvatar, popupOpenedCardDelete } from './modal.js'
-import { meID, getLikes } from './index.js'
-const formElementCard = document.querySelector('.form_card');
-const formAvatar = document.querySelector('.avatar__form');
-const formCardDelete = document.querySelector('.form_card-delete');
-const linkAvatar = document.querySelector('.form__input_popup_link-avatar');
-const pofileAvatar = document.querySelector('.profile__avatar');
+import { openPopupImg, openPopup, closePopup, } from './modal.js'
+import { popupOpenedCard, popupOpenedCardDelete, } from './constants.js'
+import { deleteCard } from './index.js';
+
 const elementsContainer = document.querySelector('.elements');
-const designationInput = document.querySelector('.form__input_popup_designation');
-const pictureInput = document.querySelector('.form__input_popup_link-picture');
 const elementsTemplate = document.querySelector('#elements-template').content;
 
-function createCard({ name, link, likes, owner, _id }) {
+function createCard({ name, link, likes, owner, _id }, getLikes, meID) {
   const newElement = elementsTemplate.cloneNode(true);
   const elementImg = newElement.querySelector('.elements__mask-group')
   const elementDelete = newElement.querySelector('.elements__delete')
   const elementLikes = newElement.querySelector('.elements__like')
   const elementLikesCounter = newElement.querySelector('.elements__like-counter')
+  const elementRectangle = newElement.querySelector('.elements__rectangle')
 
   newElement.querySelector('.elements__text').textContent = name;
+  elementRectangle.id = _id
   elementDelete.id = _id;
   elementLikes.id = _id;
   elementImg.src = link;
   elementImg.alt = name;
   elementLikesCounter.textContent = likes.length
   elementImg.addEventListener('click', function (evt) {
-    evt.target.closest('.elements__rectangle');
     openPopupImg({ name, link });
   });
 
   elementDelete.addEventListener('click', function (evt) {
-    evt.target.closest('.elements__rectangle');
-    openPopup(popupOpenedCardDelete, evt.target.id);
+    deleteCard(evt.target.id);
   });
 
   elementLikes.addEventListener('click', function (evt) {
-    evt.target.closest('.elements__like');
     getLikes(evt.target.id, elementLikes, elementLikesCounter)
     elementLikes.classList.toggle('elements__like_active')
   });
@@ -54,8 +48,6 @@ function createCard({ name, link, likes, owner, _id }) {
   if (owner === meID.id._id) {
     elementDelete.style.display = 'block'
   }
-
-
   return newElement;
 }
 
@@ -65,14 +57,9 @@ function insertIntoMarkup(newElement) {
 }
 
 //добавление карточки
-function addElements(newCard) {
-  elementsContainer.prepend(createCard(newCard));
+function addElements(newCard, getLikes, meID) {
+  elementsContainer.prepend(createCard(newCard, getLikes, meID));
   closePopup(popupOpenedCard)
 }
-//аватар
-function submitAvatarForm(newAvatar) {
-  pofileAvatar.src = newAvatar
-  closePopup(popupOpenedAvatar);
-}
 
-export { linkAvatar, formElementCard, formCardDelete, formAvatar, elementsContainer, designationInput, pictureInput, elementsTemplate, pofileAvatar, createCard, insertIntoMarkup, submitAvatarForm, addElements }
+export { createCard, insertIntoMarkup, addElements }
