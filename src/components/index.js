@@ -2,7 +2,7 @@ import '../pages/index.css';
 import { createCard, insertIntoMarkup, addElements } from './card.js'
 import { profileAbout, pofileName, pofileAvatar, popupOpenedAvatar, popupOpenedCard, popupOpenedCardDelete, addButton, popupClose, nameInput, jobInput, formElement, editButton, avatarEditButton, formElementCard, formAvatar, formCardDelete, linkAvatar, designationInput, pictureInput, } from './constants.js'
 import { renderLoading, popupOpenedProfile, openPopup, closePopup, submitHandlerForm, } from './modal.js'
-import { toggleButton, enableValidation } from './validate.js';
+import { buttonDisabled, toggleButton, enableValidation } from './validate.js';
 import { initialCards, meInfo, deleteCards, newCards, likesDeleteFetch, editingProfile, likesFetch, editAvatar } from './api.js';
 const meID = {};
 const cardInfo = {};
@@ -17,7 +17,7 @@ meInfo().then((data) => {
   console.log(err);
 });
 
-initialCards().then(res => res.forEach(card => {
+initialCards().then(res => res.reverse().forEach(card => {
   const newCard = {
     name: card.name,
     link: card.link,
@@ -36,7 +36,9 @@ initialCards().then(res => res.forEach(card => {
 
 formElementCard.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  const btnTextContent = evt.submitter.textContent
   renderLoading(true, evt.submitter)
+  buttonDisabled(evt.submitter)
   newCards({
     name: designationInput.value,
     link: pictureInput.value
@@ -54,7 +56,7 @@ formElementCard.addEventListener('submit', function (evt) {
     console.log(err);
   })
     .finally(() => {
-      renderLoading(false)
+      renderLoading(false, evt.submitter, btnTextContent)
     });
 }, toggleButton);
 
@@ -80,7 +82,9 @@ function getLikes(id, elementLikes, elementLikesCounter) {
 //аватар
 formAvatar.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  const btnTextContent = evt.submitter.textContent
   renderLoading(true, evt.submitter)
+  buttonDisabled(evt.submitter)
   editAvatar(
     linkAvatar.value
   ).then((res) => {
@@ -91,7 +95,7 @@ formAvatar.addEventListener('submit', function (evt) {
     console.log(err);
   })
     .finally(() => {
-      renderLoading(false)
+      renderLoading(false, evt.submitter, btnTextContent)
     });
 }, toggleButton);
 
@@ -104,7 +108,6 @@ export function deleteCard(id) {
     .catch((err) => {
       console.log(err);
     })
-
 }
 editButton.addEventListener('click', function () {
   nameInput.value = pofileName.textContent;
@@ -114,7 +117,6 @@ editButton.addEventListener('click', function () {
 
 addButton.addEventListener('click', () => openPopup(popupOpenedCard))
 avatarEditButton.addEventListener('click', () => openPopup(popupOpenedAvatar))
-
 
 popupClose.forEach(button => {
   button.addEventListener('click', function (e) {
@@ -126,6 +128,7 @@ popupClose.forEach(button => {
 
 formElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
+  const btnTextContent = evt.submitter.textContent
   renderLoading(true, evt.submitter)
   editingProfile({
     name: nameInput.value,
@@ -139,7 +142,7 @@ formElement.addEventListener('submit', function (evt) {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false)
+      renderLoading(false, evt.submitter, btnTextContent)
     });
 }
 );

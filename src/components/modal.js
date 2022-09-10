@@ -3,9 +3,12 @@ const popupOpenedProfile = document.querySelector('.popup_opened_profile');
 const popupImg = document.querySelector('.popup__image');
 const popupText = document.querySelector('.popup__text')
 
-function renderLoading(isLoading, text) {
+function renderLoading(isLoading, button, btnTextContent) {
   if (isLoading) {
-    text.textContent = 'Сохранение...';
+    button.textContent = 'Сохранение...';
+  }
+  else {
+    button.textContent = btnTextContent;
   }
 }
 
@@ -16,9 +19,8 @@ function openPopupImg({ name, link }) {
   openPopup(popupOpenedImg);
 }
 
-function openPopup(popupElement, _id) {
+function openPopup(popupElement) {
   popupElement.classList.add('popup_opened')
-  document.querySelector('.form_card-delete') //открыть попапа
   document.addEventListener('mousedown', overlayClose)  //слушатель по клику на оверлей.
   document.addEventListener('keydown', escClose)//слушатель по нажатию на клавишу Esc.
 }

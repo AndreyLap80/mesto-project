@@ -1,5 +1,10 @@
 //валидация форм
 
+function buttonDisabled(btn) {
+  btn.setAttribute('disabled', true);
+  btn.classList.add('form__button_disabled')
+}
+
 const showInputError = (forms, inputElement, errorMessage, param) => {
   const errorElement = forms.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(param.inputErrorClass);
@@ -59,4 +64,4 @@ const enableValidation = (param) => {
     setEventListeners(forms, param);
   });
 };
-export { showInputError, hideInputError, inputValidity, invalidInput, toggleButton, setEventListeners, enableValidation }
+export { buttonDisabled, showInputError, hideInputError, inputValidity, invalidInput, toggleButton, setEventListeners, enableValidation }
